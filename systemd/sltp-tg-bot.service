@@ -1,0 +1,45 @@
+[Unit]
+Description=SLTP Telegram Bot (sltp-tg-bot)
+Documentation=https://t.me/thanhglobalist
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sltpbot
+Group=sltpbot
+WorkingDirectory=/opt/sltp-tg-bot
+EnvironmentFile=/etc/sltp-tg-bot/sltp-tg-bot.env
+ExecStart=/opt/sltp-tg-bot/venv/bin/python -m sltp_tg_bot.main
+Restart=on-failure
+RestartSec=5s
+
+# ---- Hardening ----
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+
+# Only these paths may be written to
+ReadWritePaths=/var/lib/sltp-tg-bot /var/log/sltp-tg-bot
+
+# Cap network bind capabilities
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+# Resource limits
+LimitNOFILE=4096
+LimitNPROC=512
+
+[Install]
+WantedBy=multi-user.target
