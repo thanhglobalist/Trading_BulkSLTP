@@ -90,7 +90,7 @@ async def cb_team(cb: CallbackQuery) -> None:
         )
     lines.append("")
     lines.append(f"Use /addmember to add. Use /pause `<id>` /resume `<id>`.")
-    await cb.message.answer("\n".join(lines), parse_mode="MarkdownV2")
+    await cb.message.answer("\n".join(lines))
     await cb.answer()
 
 
@@ -320,7 +320,7 @@ async def cb_accounts(cb: CallbackQuery) -> None:
         )
     lines.append("")
     lines.append("Use /addaccount `<alias>` to add, /rotate `<alias>` to rotate token.")
-    await cb.message.answer("\n".join(lines), parse_mode="MarkdownV2")
+    await cb.message.answer("\n".join(lines))
     await cb.answer()
 
 
@@ -459,7 +459,7 @@ async def cb_audit(cb: CallbackQuery) -> None:
         )
     if not rows:
         lines.append("(empty)")
-    await cb.message.answer("\n".join(lines), parse_mode="MarkdownV2")
+    await cb.message.answer("\n".join(lines))
     await cb.answer()
 
 

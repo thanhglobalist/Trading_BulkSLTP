@@ -1,0 +1,2 @@
+[console_scripts]
+sltp-tg-bot = sltp_tg_bot.main:main
