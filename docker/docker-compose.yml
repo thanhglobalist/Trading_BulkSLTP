@@ -1,0 +1,42 @@
+# docker-compose for sltp-tg-bot.
+# Author: Thanh Nguyen <thanhglobalist@gmail.com>
+#
+# For unattended container updates, consider running watchtower alongside
+# this stack (image: containrrr/watchtower) — left as a comment because it
+# rewrites images on its own schedule and may not suit every deployment.
+# Example:
+#   watchtower:
+#     image: containrrr/watchtower
+#     volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+#     command: --interval 3600
+
+version: "3.9"
+
+services:
+  sltp-tg-bot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: sltp-tg-bot:1.0.0
+    container_name: sltp-tg-bot
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    environment:
+      DB_PATH: /var/lib/sltp-tg-bot/sltp.db
+      LISTEN_HOST: 0.0.0.0
+      LISTEN_PORT: 8080
+    volumes:
+      - sltp-data:/var/lib/sltp-tg-bot
+      - sltp-logs:/var/log/sltp-tg-bot
+    ports:
+      - "127.0.0.1:8080:8080"      # bind to localhost; nginx fronts public TLS
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=3).status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  sltp-data:
+  sltp-logs:
