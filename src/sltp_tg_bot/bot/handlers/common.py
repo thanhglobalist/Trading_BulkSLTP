@@ -211,3 +211,9 @@ async def fallback_text(message: Message) -> None:
     # Members reach this only when no other handler matched — silently ignore
     # to avoid revealing internal state. Pending-state input is consumed by
     # the trading handler before this catch-all runs.
+
+
+
+@router.message(Command("help"))
+async def cmd_help_force(message: Message) -> None:
+    await message.answer("📘 Help:\n- /menu mở menu\n- /status xem trạng thái\n- /positions xem vị thế\n- /lang đổi ngôn ngữ")
