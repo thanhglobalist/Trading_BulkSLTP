@@ -1,7 +1,7 @@
 """Admin-only flows: team mgmt, account mgmt, audit log, broadcast.
 
-Every entry point checks ``require_admin`` first; non-admins receive the
-generic ``err_not_allowed`` string and an audit row — never a hint that the
+Every entry point checks require_admin first; non-admins receive the
+generic err_not_allowed string and an audit row — never a hint that the
 section exists.
 
 Author: Thanh Nguyen <thanhglobalist@gmail.com>
@@ -84,13 +84,13 @@ async def cb_team(cb: CallbackQuery) -> None:
     for m in members:
         flag = "👑" if m["is_admin"] else ("⏸" if m["is_paused"] else "•")
         lines.append(
-            f"{flag} `{m['user_id']}` "
+            f"{flag} {m['user_id']} "
             f"{mdv2_escape(m['display_name'])} "
             f"\\[{mdv2_escape(m['language'])}\\]"
         )
     lines.append("")
-    lines.append(f"Use /addmember to add. Use /pause `<id>` /resume `<id>`.")
-    await cb.message.answer("\n".join(lines))
+    lines.append(f"Use /addmember to add. Use /pause <id> /resume <id>.")
+    await cb.message.answer("\n".join(lines), parse_mode=None)
     await cb.answer()
 
 
@@ -315,12 +315,12 @@ async def cb_accounts(cb: CallbackQuery) -> None:
     for a in accounts:
         last = a["last_seen_at"] or "—"
         lines.append(
-            f"• `{mdv2_escape(a['alias'])}` "
-            f"\\[id={a['id']}\\] last\\_seen=`{mdv2_escape(last)}`"
+            f"• {mdv2_escape(a['alias'])} "
+            f"\\[id={a['id']}\\] last\\_seen={mdv2_escape(last)}"
         )
     lines.append("")
-    lines.append("Use /addaccount `<alias>` to add, /rotate `<alias>` to rotate token.")
-    await cb.message.answer("\n".join(lines))
+    lines.append("Use /addaccount <alias> to add, /rotate <alias> to rotate token.")
+    await cb.message.answer("\n".join(lines), parse_mode=None)
     await cb.answer()
 
 
@@ -452,14 +452,14 @@ async def cb_audit(cb: CallbackQuery) -> None:
     for r in rows:
         flag = "✅" if r["allowed"] else "🚫"
         lines.append(
-            f"{flag} `{mdv2_escape(r['created_at'])}` "
-            f"u=`{r['user_id']}` a=`{r['account_id']}` "
-            f"`{mdv2_escape(r['action'])}` "
+            f"{flag} {mdv2_escape(r['created_at'])} "
+            f"u={r['user_id']} a={r['account_id']} "
+            f"{mdv2_escape(r['action'])} "
             f"{mdv2_escape(truncate(r['reason'] or '', 40))}"
         )
     if not rows:
         lines.append("(empty)")
-    await cb.message.answer("\n".join(lines))
+    await cb.message.answer("\n".join(lines), parse_mode=None)
     await cb.answer()
 
 
@@ -508,5 +508,5 @@ async def cb_broadcast_hint(cb: CallbackQuery) -> None:
         if not await require_admin(conn, user_id=cb.from_user.id, action="broadcast_hint"):
             await cb.answer(t("err_not_allowed", "en"), show_alert=True)
             return
-    await cb.message.answer("Use /broadcast <message> to send to all members.")
+    await cb.message.answer("Use /broadcast [message] to send to all members.", parse_mode=None)
     await cb.answer()

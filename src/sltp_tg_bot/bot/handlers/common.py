@@ -183,9 +183,7 @@ async def cmd_getmyid(message: Message) -> None:
             )
         elif member is not None:
             lang = member["language"]
-    await message.answer(
-        t("your_id", lang, user_id=message.from_user.id), parse_mode="MarkdownV2"
-    )
+    await message.answer(f"Your Telegram user ID is `{message.from_user.id}`.")
 
 
 # ---------------------------------------------------------------------------

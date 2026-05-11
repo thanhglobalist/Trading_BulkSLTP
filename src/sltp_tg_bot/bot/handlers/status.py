@@ -88,7 +88,7 @@ async def _run_action(message_or_cb, action: str) -> None:
             parse_mode="MarkdownV2",
         )
     except Exception:
-        await chat.bot.send_message(chat.id, text, parse_mode="MarkdownV2")
+        await chat.bot.send_message(chat.id, text)
 
 
 @router.message(Command("status"))

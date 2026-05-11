@@ -166,7 +166,7 @@ async def cb_trade(cb: CallbackQuery) -> None:
     })
     text = _confirm_text(action, alias=account["alias"], lang=lang, n=0)
     await cb.message.answer(
-        text, parse_mode="MarkdownV2", reply_markup=confirm_kb(token, lang),
+        text, reply_markup=confirm_kb(token, lang),
     )
     await cb.answer()
 
@@ -335,4 +335,4 @@ async def _execute(
             parse_mode="MarkdownV2",
         )
     except Exception:
-        await chat_msg.answer(text, parse_mode="MarkdownV2")
+        await chat_msg.answer(text)
