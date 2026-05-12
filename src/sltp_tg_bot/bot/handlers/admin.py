@@ -456,7 +456,12 @@ async def consume_pending_rename(message: Message) -> None:
 
         import json
         args = json.loads(sess["pending_args_json"]) if sess.get("pending_args_json") else {}
+        account_id = args.get("account_id")
         old_alias = args.get("account_alias")
+        if account_id is not None:
+            acc_live = await db.get_account_by_id(conn, int(account_id))
+            if acc_live:
+                old_alias = acc_live["alias"]
         if not old_alias:
             await db.set_pending_state(conn, user_id=message.from_user.id, state=None, args=None)
             await message.answer("Rename context expired. Please try again.")
@@ -503,7 +508,7 @@ async def cb_account_rename(cb: CallbackQuery) -> None:
             conn,
             user_id=cb.from_user.id,
             state="adm_rename_account",
-            args={"account_alias": acc["alias"]},
+            args={"account_id": acc["id"], "account_alias": acc["alias"]},
         )
 
     await cb.message.answer(
