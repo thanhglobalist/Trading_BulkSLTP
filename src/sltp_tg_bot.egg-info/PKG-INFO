@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: sltp-tg-bot
-Version: 1.0.0
+Version: 1.0.1
 Summary: Telegram control bridge for the MT5 BulkSLTPUpdater EA.
 Author-email: Thanh Nguyen <thanhglobalist@gmail.com>
 License: MIT

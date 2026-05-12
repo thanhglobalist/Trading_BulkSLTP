@@ -5,6 +5,6 @@ Email: thanhglobalist@gmail.com
 Telegram: https://t.me/thanhglobalist
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Thanh Nguyen"
 __email__ = "thanhglobalist@gmail.com"
