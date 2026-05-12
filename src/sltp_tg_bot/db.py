@@ -288,6 +288,51 @@ async def rotate_account_token(conn: aiosqlite.Connection, alias: str) -> Option
     return new_token if cur.rowcount > 0 else None
 
 
+class AliasConflictError(Exception):
+    """Raised when a new alias is already in use by another account."""
+
+
+class AccountNotFoundError(Exception):
+    """Raised when an alias does not match any existing account."""
+
+
+async def rename_account(
+    conn: aiosqlite.Connection, *, old_alias: str, new_alias: str
+) -> int:
+    """Rename an account. Returns the ``account_id`` of the renamed row.
+
+    Raises ``AccountNotFoundError`` if ``old_alias`` does not exist, or
+    ``AliasConflictError`` if ``new_alias`` is already taken by a different
+    account. No-ops (old == new) succeed and return the existing id.
+
+    The EA token, MT5 login, granted permissions, and audit history are all
+    untouched — only the human-readable alias changes.
+    """
+    cur = await conn.execute(
+        "SELECT id FROM accounts WHERE alias = ?", (old_alias,)
+    )
+    row = await cur.fetchone()
+    if row is None:
+        raise AccountNotFoundError(old_alias)
+    account_id = row["id"]
+
+    if new_alias == old_alias:
+        return account_id
+
+    cur = await conn.execute(
+        "SELECT id FROM accounts WHERE alias = ? AND id != ?",
+        (new_alias, account_id),
+    )
+    if await cur.fetchone() is not None:
+        raise AliasConflictError(new_alias)
+
+    await conn.execute(
+        "UPDATE accounts SET alias = ? WHERE id = ?", (new_alias, account_id)
+    )
+    await conn.commit()
+    return account_id
+
+
 async def get_account_by_id(
     conn: aiosqlite.Connection, account_id: int
 ) -> Optional[aiosqlite.Row]:

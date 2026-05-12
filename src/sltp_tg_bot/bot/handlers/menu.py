@@ -254,3 +254,28 @@ async def cb_menu_lang(cb: CallbackQuery) -> None:
 @router.callback_query(F.data == "noop")
 async def cb_noop(cb: CallbackQuery) -> None:
     await cb.answer()
+
+
+@router.callback_query(F.data == "menu:settings")
+async def cb_menu_settings(cb: CallbackQuery) -> None:
+    if cb.from_user is None:
+        return
+    settings = get_settings()
+    async with db.connect(settings.db_path) as conn:
+        sess = await db.get_session(conn, cb.from_user.id)
+        member = await db.get_member(conn, cb.from_user.id)
+        lang = member["language"] if member else "en"
+
+    account_id = sess["current_account_id"] if sess else None
+    if not account_id:
+        await cb.message.answer("No active account. Use /menu to pick one.")
+        await cb.answer()
+        return
+
+    from ..keyboards import account_actions_kb
+    await cb.message.answer(
+        "Account settings:",
+        reply_markup=account_actions_kb(account_id, lang),
+        parse_mode=None,
+    )
+    await cb.answer()

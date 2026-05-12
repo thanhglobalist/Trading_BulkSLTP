@@ -117,11 +117,40 @@ def language_kb() -> InlineKeyboardMarkup:
 def admin_settings_kb(lang: str) -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
     kb.button(text=t("admin_team", lang), callback_data="admin:team")
-    kb.button(text=t("admin_accounts", lang), callback_data="admin:accounts")
+    kb.button(text=t("admin_accounts", lang), callback_data="menu:settings")
     kb.button(text=t("admin_audit", lang), callback_data="admin:audit")
     kb.button(text=t("admin_broadcast", lang), callback_data="admin:broadcast")
     kb.button(text=t("btn_back", lang), callback_data="menu:home")
     kb.adjust(2, 2, 1)
+    return kb.as_markup()
+
+
+def accounts_list_kb(accounts: Iterable, lang: str) -> InlineKeyboardMarkup:
+    """Tap an account to drill into its per-account action menu."""
+    kb = InlineKeyboardBuilder()
+    for acc in accounts:
+        kb.button(
+            text=f"🏦 {acc['alias']}",
+            callback_data=f"acct:pick:{acc['id']}",
+        )
+    kb.button(text=t("btn_back", lang), callback_data="menu:settings")
+    kb.adjust(1)
+    return kb.as_markup()
+
+
+def account_actions_kb(account_id: int, lang: str) -> InlineKeyboardMarkup:
+    """Actions available on a single selected account (admin only)."""
+    kb = InlineKeyboardBuilder()
+    kb.button(
+        text=t("admin_rename_btn", lang),
+        callback_data=f"acctadm:rename:{account_id}",
+    )
+    kb.button(
+        text=t("admin_rotate_btn", lang),
+        callback_data=f"acctadm:rotate:{account_id}",
+    )
+    kb.button(text=t("btn_back", lang), callback_data="menu:settings")
+    kb.adjust(2, 1)
     return kb.as_markup()
 
 

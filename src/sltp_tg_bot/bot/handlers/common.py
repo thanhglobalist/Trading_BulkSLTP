@@ -28,7 +28,7 @@ from ...i18n import (
     t,
 )
 from ...utils import mdv2_escape
-from ..keyboards import language_kb
+from ..keyboards import language_kb, admin_settings_kb
 
 log = logging.getLogger(__name__)
 router = Router(name="common")
@@ -191,7 +191,7 @@ async def cmd_getmyid(message: Message) -> None:
 # ---------------------------------------------------------------------------
 
 
-@router.message(F.text & ~F.text.startswith("/"))
+@router.message(F.text & ~F.text.startswith("/") & ~F.text.regexp(r"^[A-Za-z0-9_-]{1,32}$"))
 async def fallback_text(message: Message) -> None:
     """Free-text messages from non-members get the lockout string only."""
     if message.from_user is None:
@@ -211,7 +211,17 @@ async def fallback_text(message: Message) -> None:
     # the trading handler before this catch-all runs.
 
 
-
-@router.message(Command("help"))
-async def cmd_help_force(message: Message) -> None:
-    await message.answer("📘 Help:\n- /menu mở menu\n- /status xem trạng thái\n- /positions xem vị thế\n- /lang đổi ngôn ngữ")
+@router.message(Command("settings"))
+async def cmd_settings_direct(message: Message) -> None:
+    if message.from_user is None:
+        return
+    settings = get_settings()
+    async with db.connect(settings.db_path) as conn:
+        member = await db.get_member(conn, message.from_user.id)
+        if member is None and message.from_user.id != settings.admin_user_id:
+            await message.answer(t("lockout", "en"))
+            return
+        if member is None or not bool(member["is_admin"]):
+            await message.answer("Admins only.")
+            return
+    await message.answer("⚙️ Settings", reply_markup=admin_settings_kb(member["language"] if member else "en"))
