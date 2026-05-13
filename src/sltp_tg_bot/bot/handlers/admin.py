@@ -112,14 +112,14 @@ async def msg_consume_rename(message: Message) -> None:
         await db.set_pending_state(conn, user_id=message.from_user.id, state=None, args=None)
 
 
-@router.message(Command("renameaccount"))
+@router.message(Command("rename"))
 async def cmd_rename_account(message: Message) -> None:
-    """Typed shortcut: /renameaccount <old_alias> <new_alias>"""
+    """Typed shortcut: /rename <old_alias> <new_alias>"""
     if message.from_user is None or message.text is None:
         return
     parts = message.text.split(maxsplit=2)
     if len(parts) < 3:
-        await message.answer("Usage: /renameaccount <old_alias> <new_alias>", parse_mode=None)
+        await message.answer("Usage: /rename <old_alias> <new_alias>", parse_mode=None)
         return
 
     old_alias, new_alias = parts[1].strip(), parts[2].strip()

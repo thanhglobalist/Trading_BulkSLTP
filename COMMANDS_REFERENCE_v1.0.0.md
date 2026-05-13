@@ -165,7 +165,7 @@ In addition to all Full role commands:
 | `/addaccount` | ✅ | Multi-step flow: prompts for alias, generates unique EA token, returns config snippet for the EA |
 | `/removeaccount <alias>` | ✅ | Multi-step confirm. Revokes EA token, marks account inactive. Active positions on the EA continue running but bot no longer accepts commands for that account. |
 | `/rotatetoken <alias>` | ✅ | Generate new EA token for an existing account. Old token immediately invalid. Use when a token leaks. |
-| `/renameaccount <old> <new>` | ✅ | Change account alias. Token and permissions unchanged. |
+| `/rename <old> <new>` | ✅ | Change account alias. Token and permissions unchanged. |
 | `/team` | ✅ | List ALL team members with roles per account |
 | `/addmember` | ✅ | Multi-step flow: prompts for user ID, display name, then shows account-permission grid to set roles |
 | `/removemember <id>` | ✅ | Hard-delete a team member. Audit log preserves the record. Blocked if removing last admin. |
@@ -216,7 +216,7 @@ In addition to all Full role commands:
 | `/addaccount` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
 | `/removeaccount` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
 | `/rotatetoken` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
-| `/renameaccount` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
+| `/rename` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
 | `/team` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
 | `/addmember` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
 | `/removemember` | lockout | ❌ | ❌ | ❌ | ❌ | ✅ |
