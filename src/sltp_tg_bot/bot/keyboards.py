@@ -110,6 +110,110 @@ def language_kb() -> InlineKeyboardMarkup:
 
 
 # ---------------------------------------------------------------------------
+# Help v2 (v1.0.3) — role-aware help menu
+# ---------------------------------------------------------------------------
+
+
+def help_home_kb(*, role: str, is_admin: bool, lang: str) -> InlineKeyboardMarkup:
+    """Home grid for ``/help`` and the ``menu:help`` callback.
+
+    Topics are gated by role exactly like the main menu. Strangers (no
+    membership at all) get a much smaller grid via :func:`help_stranger_kb`.
+    """
+    kb = InlineKeyboardBuilder()
+
+    # Always visible to known members
+    kb.button(text=t("help_v2_btn_navigation", lang), callback_data="help:nav")
+    kb.button(text=t("help_v2_btn_reading", lang),    callback_data="help:reading")
+
+    if db.role_at_least(role, db.ROLE_VIEW_CLOSE):
+        kb.button(text=t("help_v2_btn_closing", lang), callback_data="help:closing")
+
+    if db.role_at_least(role, db.ROLE_FULL):
+        kb.button(text=t("help_v2_btn_sltp", lang),      callback_data="help:sltp")
+        kb.button(text=t("help_v2_btn_be", lang),        callback_data="help:be")
+        kb.button(text=t("help_v2_btn_emergency", lang), callback_data="help:emergency")
+
+    kb.button(text=t("help_v2_btn_alerts", lang),    callback_data="help:alerts")
+    kb.button(text=t("help_v2_btn_roles", lang),     callback_data="help:roles")
+    kb.button(text=t("help_v2_btn_commands", lang),  callback_data="help:commands")
+
+    if is_admin:
+        kb.button(text=t("help_v2_btn_admin", lang), callback_data="help:admin")
+
+    kb.button(
+        text=t("help_v2_btn_lang", lang).format(label=language_label(lang)),
+        callback_data="help:lang",
+    )
+    kb.button(text=t("help_v2_back_to_menu", lang),  callback_data="menu:home")
+
+    kb.adjust(2)
+    return kb.as_markup()
+
+
+def help_stranger_kb(lang: str) -> InlineKeyboardMarkup:
+    """Slim grid for users with no team membership."""
+    kb = InlineKeyboardBuilder()
+    kb.button(text=t("help_v2_btn_roles", lang),    callback_data="help:roles")
+    kb.button(text=t("help_v2_btn_commands", lang), callback_data="help:commands")
+    kb.button(
+        text=t("help_v2_btn_lang", lang).format(label=language_label(lang)),
+        callback_data="help:lang",
+    )
+    kb.adjust(2, 1)
+    return kb.as_markup()
+
+
+def help_topic_kb(
+    topic: str, *, role: str, is_admin: bool, lang: str
+) -> InlineKeyboardMarkup:
+    """Footer keyboard on each topic page.
+
+    Some topics expose a deep-link button (e.g. "Open SL/TP screen") that
+    routes back into the existing main-menu callbacks. The deep links are
+    only added when the viewer's role actually permits the action — we
+    don't tease screens they can't open.
+    """
+    kb = InlineKeyboardBuilder()
+
+    if topic == "nav":
+        kb.button(text=t("help_v2_btn_switch_account", lang), callback_data="menu:switch")
+    elif topic == "reading":
+        kb.button(text=t("help_v2_btn_open_status", lang),    callback_data="menu:status")
+        kb.button(text=t("help_v2_btn_open_positions", lang), callback_data="menu:positions")
+    elif topic == "closing" and db.role_at_least(role, db.ROLE_VIEW_CLOSE):
+        kb.button(text=t("help_v2_btn_open_close", lang), callback_data="menu:close")
+    elif topic == "sltp" and db.role_at_least(role, db.ROLE_FULL):
+        kb.button(text=t("help_v2_btn_open_sltp", lang), callback_data="menu:sltp")
+    elif topic == "be" and db.role_at_least(role, db.ROLE_FULL):
+        kb.button(text=t("help_v2_btn_open_be", lang), callback_data="menu:be")
+    elif topic == "roles":
+        kb.button(text=t("help_v2_btn_switch_account", lang), callback_data="menu:switch")
+    elif topic == "admin" and is_admin:
+        kb.button(text=t("help_v2_btn_open_settings", lang), callback_data="menu:settings")
+
+    kb.button(text=t("help_v2_back_to_help", lang), callback_data="help:home")
+    # 2 per row when there's a deep link, else just the back button
+    kb.adjust(2, 1) if topic in {"reading"} else kb.adjust(1)
+    return kb.as_markup()
+
+
+def help_lang_kb(lang: str) -> InlineKeyboardMarkup:
+    """Language picker rendered inside the help screen.
+
+    Uses a distinct callback prefix ``helplang:set:<code>`` so it does NOT
+    collide with the global ``/lang`` flow's ``lang:set:<code>`` (which
+    answers with a confirmation message instead of re-rendering help).
+    """
+    kb = InlineKeyboardBuilder()
+    for code in SUPPORTED_LANGUAGES:
+        kb.button(text=language_label(code), callback_data=f"helplang:set:{code}")
+    kb.button(text=t("help_v2_back_to_help", lang), callback_data="help:home")
+    kb.adjust(1)
+    return kb.as_markup()
+
+
+# ---------------------------------------------------------------------------
 # Admin keyboards
 # ---------------------------------------------------------------------------
 

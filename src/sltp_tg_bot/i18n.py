@@ -119,6 +119,148 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_alerts": "*Push Alerts*\nThe bot pushes position open/close, margin warnings and a daily summary in your language.",
         "help_tips": "*Tips*\n• Use Switch account to manage multiple MT5 logins.\n• Permissions are per account — you may have View on one and Full on another.",
         "help_no_access": "You currently have no account access. Please contact your admin.",
+        # ---- Help v2 (v1.0.3) ----
+        "help_v2_title": "📖 Help — IS6FX Bulk SL/TP Bot",
+        "help_v2_body": "Pick a topic.",
+        "help_v2_stranger_title": "📖 Help",
+        "help_v2_stranger_body": (
+            "You have no account access yet.\n"
+            "Send your Telegram ID to your admin so they can add you.\n\n"
+            "🆔 Your Telegram ID: {user_id}"
+        ),
+        "help_v2_back_to_help": "⬅️ Back to help",
+        "help_v2_back_to_menu": "⬅️ Back to menu",
+        "help_v2_btn_navigation": "🧭 Navigation",
+        "help_v2_btn_reading": "📊 Reading screens",
+        "help_v2_btn_closing": "❌ Closing positions",
+        "help_v2_btn_sltp": "🛡️ Bulk SL/TP",
+        "help_v2_btn_be": "⚖️ Breakeven",
+        "help_v2_btn_emergency": "🚨 Emergency",
+        "help_v2_btn_alerts": "🔔 Push alerts",
+        "help_v2_btn_roles": "👥 Roles & permissions",
+        "help_v2_btn_commands": "💬 Commands list",
+        "help_v2_btn_admin": "⚙️ Admin guide",
+        "help_v2_btn_lang": "🌐 Language: {label}",
+        "help_v2_btn_open_status": "📊 Open Status",
+        "help_v2_btn_open_positions": "📋 Open Positions",
+        "help_v2_btn_open_close": "❌ Open Close screen",
+        "help_v2_btn_open_sltp": "🛡️ Open SL/TP screen",
+        "help_v2_btn_open_be": "⚖️ Open Breakeven",
+        "help_v2_btn_open_settings": "⚙️ Open Settings",
+        "help_v2_btn_switch_account": "🔁 Switch account",
+        "help_v2_nav": (
+            "🧭 Navigation\n\n"
+            "/menu        Open the main panel\n"
+            "/status      Quick equity & P/L\n"
+            "/positions   List open trades\n"
+            "/lang        Change language (EN / JA / VI)\n"
+            "/help        This help (you're here)\n"
+            "/getmyid     Show your Telegram ID\n\n"
+            "Tip: Use 🔁 Switch account if you have access to more than one MT5."
+        ),
+        "help_v2_reading": (
+            "📊 Reading screens\n\n"
+            "Every screen header shows:\n"
+            "  • Account alias\n"
+            "  • Equity (live)\n"
+            "  • Floating P/L\n"
+            "  • Bot version\n\n"
+            "Example: 🏦 IS6FX-Main · eq $12,480.50 · P/L +$184.20 · v1.0.3\n\n"
+            "If …heartbeat lost… appears, the EA on the Windows VPS is offline."
+        ),
+        "help_v2_closing": (
+            "❌ Closing positions (requires role: view+close or above)\n\n"
+            "Tap ❌ Close on /menu, then pick:\n"
+            "  • Close ALL — every open position\n"
+            "  • Close BUYs — only long positions 🔵\n"
+            "  • Close SELLs — only short positions 🔴\n\n"
+            "Every action requires a confirmation tap.\n"
+            "Hedged pairs use CLOSE_BY to save commission."
+        ),
+        "help_v2_sltp": (
+            "🛡️ Bulk SL/TP (requires role: full)\n\n"
+            "Apply ONE Stop Loss or Take Profit price to every open position\n"
+            "on the current account in a single round-trip.\n\n"
+            "  • 🛡️ Set SL → send a price (e.g. 2350.0000 for XAUUSD.std)\n"
+            "  • 🎯 Set TP → send a price\n"
+            "  • 🗑️ Remove SL / 🗑️ Remove TP → clear that level\n\n"
+            "Example: you have 4 open trades. Tap 🛡️ Set SL, send 2348.5000.\n"
+            "All 4 trades get SL = 2348.5000 (buys below entry, sells above).\n\n"
+            "Hedged BUY and SELL positions stay on their own sides correctly."
+        ),
+        "help_v2_be": (
+            "⚖️ Portfolio Breakeven (requires role: full)\n\n"
+            "Moves the SL of every open position to its entry price plus a\n"
+            "small buffer (configured per account).\n\n"
+            "Use after a winning move to lock in a no-loss state on the basket."
+        ),
+        "help_v2_emergency": (
+            "🚨 Emergency / Panic\n\n"
+            "If something goes wrong:\n"
+            "  1. /menu → 🚨 Emergency\n"
+            "  2. Type PANIC in capital letters to confirm\n"
+            "  3. The bot closes ALL positions and DISABLES trading until an\n"
+            "     admin re-enables it.\n\n"
+            "Use this only as a last resort."
+        ),
+        "help_v2_alerts": (
+            "🔔 Push alerts\n\n"
+            "The bot pushes these events in your language:\n"
+            "  • Position opened / closed\n"
+            "  • Margin warning when < 150%\n"
+            "  • Daily summary at 23:59 server time\n\n"
+            "To silence them temporarily, mute the chat in Telegram."
+        ),
+        "help_v2_roles": (
+            "👥 Roles & permissions\n\n"
+            "Roles are set per account by an admin:\n\n"
+            "  none        no access\n"
+            "  view        see status & positions\n"
+            "  view_close  + close positions\n"
+            "  full        + set SL/TP, breakeven, panic\n"
+            "  admin       team, accounts, audit, broadcast\n\n"
+            "You may have View on one account and Full on another.\n"
+            "Need access to another account? Contact your admin."
+        ),
+        "help_v2_commands_user": (
+            "💬 Commands list\n\n"
+            "Public (everyone):\n"
+            "  /menu /status /positions /help /lang /getmyid\n\n"
+            "Trading (role: view+close or full):\n"
+            "  /closeall /closebuys /closesells\n\n"
+            "Trading (role: full only):\n"
+            "  /sl <price> /tp <price>\n"
+            "  /sloff /tpoff\n"
+            "  /be /panic\n\n"
+            "The bot only accepts commands you have the role for."
+        ),
+        "help_v2_commands_admin_extra": (
+            "\n\nAdmin only:\n"
+            "  /addaccount /rename <old> <new> /rotate <alias>\n"
+            "  /addmember /removemember <id> /pausemember <id> /resumemember <id>\n"
+            "  /setrole <user_id> <alias> <role> /promote <user_id>\n"
+            "  /audit /broadcast <message>\n\n"
+            "Or use /settings for the inline UI."
+        ),
+        "help_v2_admin": (
+            "⚙️ Admin guide\n\n"
+            "Account management:\n"
+            "  /addaccount               register a new MT5 + token\n"
+            "  /rename <old> <new>       change account alias\n"
+            "  /rotate <alias>           reissue token (old one dies)\n\n"
+            "Team management:\n"
+            "  /addmember   multi-step add\n"
+            "  /removemember <id>        hard-delete (audit kept)\n"
+            "  /pausemember <id>         soft-disable\n"
+            "  /resumemember <id>        re-enable\n"
+            "  /setrole <user_id> <alias> <role>\n"
+            "  /promote <user_id>        grant admin\n\n"
+            "Audit & broadcast:\n"
+            "  /audit (filter by user, account, or action)\n"
+            "  /broadcast <message>\n\n"
+            "Or use /settings for the inline UI for everything above."
+        ),
+        "help_v2_pick_language": "🌐 Choose language",
         "help_accounts_label": "*Your accounts*",
         # ---- Errors ----
         "err_not_allowed": "🚫 Action not allowed.",
@@ -238,6 +380,148 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_alerts": "*プッシュ通知*\n建玉開閉、証拠金警告、日次サマリーを選択言語で送信します。",
         "help_tips": "*ヒント*\n• 口座切替で複数の MT5 を管理できます。\n• 権限は口座ごとです（口座Aは閲覧のみ、口座Bはフルなど）。",
         "help_no_access": "現在アクセス可能な口座がありません。管理者にお問い合わせください。",
+        # ---- Help v2 (v1.0.3) ----
+        "help_v2_title": "📖 ヘルプ — IS6FX Bulk SL/TP Bot",
+        "help_v2_body": "トピックを選択してください。",
+        "help_v2_stranger_title": "📖 ヘルプ",
+        "help_v2_stranger_body": (
+            "まだ口座へのアクセス権がありません。\n"
+            "下記の Telegram ID を管理者に送付し、登録を依頼してください。\n\n"
+            "🆔 あなたの Telegram ID: {user_id}"
+        ),
+        "help_v2_back_to_help": "⬅️ ヘルプに戻る",
+        "help_v2_back_to_menu": "⬅️ メニューに戻る",
+        "help_v2_btn_navigation": "🧭 ナビゲーション",
+        "help_v2_btn_reading": "📊 画面の見方",
+        "help_v2_btn_closing": "❌ ポジション決済",
+        "help_v2_btn_sltp": "🛡️ 一括 SL/TP",
+        "help_v2_btn_be": "⚖️ ブレイクイーブン",
+        "help_v2_btn_emergency": "🚨 緊急停止",
+        "help_v2_btn_alerts": "🔔 プッシュ通知",
+        "help_v2_btn_roles": "👥 役割と権限",
+        "help_v2_btn_commands": "💬 コマンド一覧",
+        "help_v2_btn_admin": "⚙️ 管理者ガイド",
+        "help_v2_btn_lang": "🌐 言語: {label}",
+        "help_v2_btn_open_status": "📊 ステータスを開く",
+        "help_v2_btn_open_positions": "📋 ポジション一覧を開く",
+        "help_v2_btn_open_close": "❌ 決済画面を開く",
+        "help_v2_btn_open_sltp": "🛡️ SL/TP 画面を開く",
+        "help_v2_btn_open_be": "⚖️ ブレイクイーブンを開く",
+        "help_v2_btn_open_settings": "⚙️ 設定を開く",
+        "help_v2_btn_switch_account": "🔁 口座切替",
+        "help_v2_nav": (
+            "🧭 ナビゲーション\n\n"
+            "/menu        メインパネルを開く\n"
+            "/status      残高と損益を確認\n"
+            "/positions   保有ポジション一覧\n"
+            "/lang        言語切替 (EN / JA / VI)\n"
+            "/help        このヘルプ\n"
+            "/getmyid     自分の Telegram ID 表示\n\n"
+            "ヒント：複数の MT5 口座をお使いの場合は 🔁 口座切替 をご利用ください。"
+        ),
+        "help_v2_reading": (
+            "📊 画面の見方\n\n"
+            "各画面のヘッダーに表示される情報：\n"
+            "  • 口座エイリアス\n"
+            "  • 有効証拠金（リアルタイム）\n"
+            "  • 含み損益\n"
+            "  • ボットのバージョン\n\n"
+            "例： 🏦 IS6FX-Main · eq $12,480.50 · P/L +$184.20 · v1.0.3\n\n"
+            "…heartbeat lost… と表示された場合、Windows VPS の EA がオフラインです。"
+        ),
+        "help_v2_closing": (
+            "❌ ポジション決済 (必要な権限：view+close 以上)\n\n"
+            "/menu の ❌ 決済 から選択：\n"
+            "  • 全決済 — 保有中の全ポジション\n"
+            "  • 買い決済 — 買いポジションのみ 🔵\n"
+            "  • 売り決済 — 売りポジションのみ 🔴\n\n"
+            "操作には確認タップが必要です。\n"
+            "ヘッジ建てでは手数料節約のため CLOSE_BY を使用します。"
+        ),
+        "help_v2_sltp": (
+            "🛡️ 一括 SL/TP (必要な権限：full)\n\n"
+            "現在の口座の 全ポジション に対し、ひとつの SL または TP 価格を\n"
+            "一括で適用します。\n\n"
+            "  • 🛡️ SL 設定 → 価格を送信（例 XAUUSD.std なら 2350.0000）\n"
+            "  • 🎯 TP 設定 → 価格を送信\n"
+            "  • 🗑️ SL/TP 解除 → 該当ラインを削除\n\n"
+            "例： 4 つのポジションがある場合、🛡️ SL 設定で 2348.5000 を送信すると、\n"
+            "4 つ全てに SL = 2348.5000 が設定されます（買いは下、売りは上）。\n\n"
+            "両建ての買い・売りも正しくそれぞれの側に配置されます。"
+        ),
+        "help_v2_be": (
+            "⚖️ ポートフォリオ・ブレイクイーブン (必要な権限：full)\n\n"
+            "全ポジションの SL をエントリー価格＋小バッファに移動します\n"
+            "（バッファは口座ごとに設定）。\n\n"
+            "含み益が出ている場合に、損失をなくす形でロックするのに使います。"
+        ),
+        "help_v2_emergency": (
+            "🚨 緊急停止 / Panic\n\n"
+            "緊急時の手順：\n"
+            "  1. /menu → 🚨 Emergency\n"
+            "  2. 確認のため大文字で PANIC と入力\n"
+            "  3. ボットが全ポジションを決済し、管理者が再開するまで\n"
+            "     取引を停止します。\n\n"
+            "最終手段としてのみ使用してください。"
+        ),
+        "help_v2_alerts": (
+            "🔔 プッシュ通知\n\n"
+            "選択された言語で以下のイベントを通知します：\n"
+            "  • ポジションのオープン／クローズ\n"
+            "  • 証拠金維持率が 150% を下回った時の警告\n"
+            "  • サーバー時間 23:59 の日次サマリー\n\n"
+            "一時的に止めたい場合は Telegram でチャットをミュートしてください。"
+        ),
+        "help_v2_roles": (
+            "👥 役割と権限\n\n"
+            "役割は口座ごとに管理者が設定します：\n\n"
+            "  none        アクセス不可\n"
+            "  view        ステータス／ポジション閲覧\n"
+            "  view_close  ＋ ポジション決済\n"
+            "  full        ＋ SL/TP 設定、BE、Panic\n"
+            "  admin       チーム、口座、監査、ブロードキャスト\n\n"
+            "口座 A は閲覧のみ、口座 B はフル権限といった設定も可能です。\n"
+            "他の口座のアクセスが必要な場合は管理者にご連絡ください。"
+        ),
+        "help_v2_commands_user": (
+            "💬 コマンド一覧\n\n"
+            "共通（全員）：\n"
+            "  /menu /status /positions /help /lang /getmyid\n\n"
+            "取引コマンド (view+close または full):\n"
+            "  /closeall /closebuys /closesells\n\n"
+            "取引コマンド (full のみ):\n"
+            "  /sl <価格> /tp <価格>\n"
+            "  /sloff /tpoff\n"
+            "  /be /panic\n\n"
+            "権限のあるコマンドのみ受け付けます。"
+        ),
+        "help_v2_commands_admin_extra": (
+            "\n\n管理者専用：\n"
+            "  /addaccount /rename <旧> <新> /rotate <エイリアス>\n"
+            "  /addmember /removemember <id> /pausemember <id> /resumemember <id>\n"
+            "  /setrole <user_id> <エイリアス> <役割> /promote <user_id>\n"
+            "  /audit /broadcast <メッセージ>\n\n"
+            "または /settings でインライン UI が利用可能です。"
+        ),
+        "help_v2_admin": (
+            "⚙️ 管理者ガイド\n\n"
+            "口座管理：\n"
+            "  /addaccount               新規 MT5 とトークンを登録\n"
+            "  /rename <旧> <新>         エイリアス変更\n"
+            "  /rotate <エイリアス>      トークン再発行（旧トークン無効化）\n\n"
+            "チーム管理：\n"
+            "  /addmember   多段階追加\n"
+            "  /removemember <id>        ハード削除（監査ログは保持）\n"
+            "  /pausemember <id>         一時停止\n"
+            "  /resumemember <id>        再開\n"
+            "  /setrole <user_id> <エイリアス> <役割>\n"
+            "  /promote <user_id>        管理者権限付与\n\n"
+            "監査とブロードキャスト：\n"
+            "  /audit (ユーザー／口座／アクションでフィルタ)\n"
+            "  /broadcast <メッセージ>\n\n"
+            "または /settings で全機能のインライン UI が使えます。"
+        ),
+        "help_v2_pick_language": "🌐 言語を選択",
         "help_accounts_label": "*ご利用可能な口座*",
         # ---- Errors ----
         "err_not_allowed": "🚫 この操作は許可されていません。",
@@ -357,6 +641,148 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_alerts": "*Cảnh báo đẩy*\nBot gửi cảnh báo mở/đóng vị thế, cảnh báo ký quỹ và tóm tắt cuối ngày bằng ngôn ngữ của bạn.",
         "help_tips": "*Mẹo*\n• Dùng Đổi tài khoản để quản lý nhiều MT5.\n• Quyền là theo từng tài khoản (có thể chỉ Xem ở tài khoản này, Toàn quyền ở tài khoản khác).",
         "help_no_access": "Hiện bạn chưa có quyền trên tài khoản nào. Vui lòng liên hệ quản trị viên.",
+        # ---- Help v2 (v1.0.3) ----
+        "help_v2_title": "📖 Trợ giúp — IS6FX Bulk SL/TP Bot",
+        "help_v2_body": "Chọn một chủ đề.",
+        "help_v2_stranger_title": "📖 Trợ giúp",
+        "help_v2_stranger_body": (
+            "Bạn chưa có quyền truy cập tài khoản nào.\n"
+            "Gửi Telegram ID của bạn cho quản trị viên để được thêm vào hệ thống.\n\n"
+            "🆔 Telegram ID của bạn: {user_id}"
+        ),
+        "help_v2_back_to_help": "⬅️ Quay lại trợ giúp",
+        "help_v2_back_to_menu": "⬅️ Quay lại menu",
+        "help_v2_btn_navigation": "🧭 Điều hướng",
+        "help_v2_btn_reading": "📊 Đọc màn hình",
+        "help_v2_btn_closing": "❌ Đóng lệnh",
+        "help_v2_btn_sltp": "🛡️ SL/TP hàng loạt",
+        "help_v2_btn_be": "⚖️ Hòa vốn",
+        "help_v2_btn_emergency": "🚨 Khẩn cấp",
+        "help_v2_btn_alerts": "🔔 Cảnh báo đẩy",
+        "help_v2_btn_roles": "👥 Vai trò & quyền",
+        "help_v2_btn_commands": "💬 Danh sách lệnh",
+        "help_v2_btn_admin": "⚙️ Hướng dẫn quản trị",
+        "help_v2_btn_lang": "🌐 Ngôn ngữ: {label}",
+        "help_v2_btn_open_status": "📊 Mở Trạng thái",
+        "help_v2_btn_open_positions": "📋 Mở Danh sách lệnh",
+        "help_v2_btn_open_close": "❌ Mở màn hình Đóng",
+        "help_v2_btn_open_sltp": "🛡️ Mở màn hình SL/TP",
+        "help_v2_btn_open_be": "⚖️ Mở Hòa vốn",
+        "help_v2_btn_open_settings": "⚙️ Mở Cài đặt",
+        "help_v2_btn_switch_account": "🔁 Đổi tài khoản",
+        "help_v2_nav": (
+            "🧭 Điều hướng\n\n"
+            "/menu        Mở bảng điều khiển chính\n"
+            "/status      Xem nhanh equity & P/L\n"
+            "/positions   Danh sách lệnh đang mở\n"
+            "/lang        Đổi ngôn ngữ (EN / JA / VI)\n"
+            "/help        Trợ giúp (bạn đang ở đây)\n"
+            "/getmyid     Hiển thị Telegram ID\n\n"
+            "Mẹo: Dùng 🔁 Đổi tài khoản nếu bạn có nhiều MT5."
+        ),
+        "help_v2_reading": (
+            "📊 Đọc màn hình\n\n"
+            "Mỗi màn hình có header hiển thị:\n"
+            "  • Tên tài khoản (alias)\n"
+            "  • Equity (thời gian thực)\n"
+            "  • P/L đang trôi\n"
+            "  • Phiên bản bot\n\n"
+            "Ví dụ: 🏦 IS6FX-Main · eq $12,480.50 · P/L +$184.20 · v1.0.3\n\n"
+            "Nếu thấy …heartbeat lost…, EA trên Windows VPS đang offline."
+        ),
+        "help_v2_closing": (
+            "❌ Đóng lệnh (yêu cầu vai trò: view+close trở lên)\n\n"
+            "Trong /menu chạm ❌ Đóng, sau đó chọn:\n"
+            "  • Đóng TẤT CẢ — toàn bộ lệnh đang mở\n"
+            "  • Đóng BUY — chỉ lệnh mua 🔵\n"
+            "  • Đóng SELL — chỉ lệnh bán 🔴\n\n"
+            "Mọi thao tác đều cần xác nhận thêm 1 lần.\n"
+            "Lệnh đối ứng (hedged) dùng CLOSE_BY để tiết kiệm phí."
+        ),
+        "help_v2_sltp": (
+            "🛡️ SL/TP hàng loạt (yêu cầu vai trò: full)\n\n"
+            "Áp một mức Stop Loss hoặc Take Profit cho tất cả lệnh đang mở\n"
+            "trên tài khoản hiện tại trong một lần.\n\n"
+            "  • 🛡️ Đặt SL → gửi giá (vd. 2350.0000 cho XAUUSD.std)\n"
+            "  • 🎯 Đặt TP → gửi giá\n"
+            "  • 🗑️ Bỏ SL / 🗑️ Bỏ TP → xóa mức tương ứng\n\n"
+            "Ví dụ: bạn có 4 lệnh. Chạm 🛡️ Đặt SL, gửi 2348.5000.\n"
+            "Cả 4 lệnh sẽ có SL = 2348.5000 (buy ở dưới, sell ở trên).\n\n"
+            "Lệnh hedge BUY/SELL được giữ đúng phía của mình."
+        ),
+        "help_v2_be": (
+            "⚖️ Hòa vốn toàn danh mục (yêu cầu vai trò: full)\n\n"
+            "Dời SL của mọi lệnh về giá vào lệnh cộng một buffer nhỏ\n"
+            "(được cấu hình riêng cho từng tài khoản).\n\n"
+            "Dùng sau khi giá đi đúng hướng để khóa trạng thái không-lỗ."
+        ),
+        "help_v2_emergency": (
+            "🚨 Khẩn cấp / Panic\n\n"
+            "Khi có sự cố:\n"
+            "  1. /menu → 🚨 Emergency\n"
+            "  2. Nhập PANIC in hoa để xác nhận\n"
+            "  3. Bot đóng TẤT CẢ lệnh và TẠM KHÓA giao dịch cho đến khi\n"
+            "     quản trị viên mở lại.\n\n"
+            "Chỉ dùng như phương án cuối cùng."
+        ),
+        "help_v2_alerts": (
+            "🔔 Cảnh báo đẩy\n\n"
+            "Bot đẩy các sự kiện sau bằng ngôn ngữ bạn chọn:\n"
+            "  • Mở / đóng lệnh\n"
+            "  • Cảnh báo margin khi < 150%\n"
+            "  • Tóm tắt ngày lúc 23:59 giờ server\n\n"
+            "Muốn im lặng tạm thời, hãy mute hội thoại trong Telegram."
+        ),
+        "help_v2_roles": (
+            "👥 Vai trò & quyền\n\n"
+            "Vai trò được quản trị viên gán theo từng tài khoản:\n\n"
+            "  none        không truy cập\n"
+            "  view        xem trạng thái & lệnh\n"
+            "  view_close  + đóng lệnh\n"
+            "  full        + đặt SL/TP, hòa vốn, panic\n"
+            "  admin       quản lý team, tài khoản, audit, broadcast\n\n"
+            "Bạn có thể chỉ Xem ở tài khoản này và Toàn quyền ở tài khoản khác.\n"
+            "Cần thêm quyền? Liên hệ quản trị viên."
+        ),
+        "help_v2_commands_user": (
+            "💬 Danh sách lệnh\n\n"
+            "Công khai (mọi người):\n"
+            "  /menu /status /positions /help /lang /getmyid\n\n"
+            "Lệnh giao dịch (vai trò: view+close hoặc full):\n"
+            "  /closeall /closebuys /closesells\n\n"
+            "Lệnh giao dịch (chỉ full):\n"
+            "  /sl <giá> /tp <giá>\n"
+            "  /sloff /tpoff\n"
+            "  /be /panic\n\n"
+            "Bot chỉ chấp nhận lệnh phù hợp với vai trò của bạn."
+        ),
+        "help_v2_commands_admin_extra": (
+            "\n\nChỉ quản trị viên:\n"
+            "  /addaccount /rename <cũ> <mới> /rotate <alias>\n"
+            "  /addmember /removemember <id> /pausemember <id> /resumemember <id>\n"
+            "  /setrole <user_id> <alias> <role> /promote <user_id>\n"
+            "  /audit /broadcast <thông điệp>\n\n"
+            "Hoặc dùng /settings để có UI inline."
+        ),
+        "help_v2_admin": (
+            "⚙️ Hướng dẫn quản trị\n\n"
+            "Quản lý tài khoản:\n"
+            "  /addaccount               đăng ký MT5 + token mới\n"
+            "  /rename <cũ> <mới>        đổi alias tài khoản\n"
+            "  /rotate <alias>           cấp lại token (token cũ bị hủy)\n\n"
+            "Quản lý thành viên:\n"
+            "  /addmember   thêm theo nhiều bước\n"
+            "  /removemember <id>        xóa cứng (audit vẫn lưu)\n"
+            "  /pausemember <id>         tạm khóa\n"
+            "  /resumemember <id>        mở lại\n"
+            "  /setrole <user_id> <alias> <role>\n"
+            "  /promote <user_id>        cấp quyền admin\n\n"
+            "Audit và broadcast:\n"
+            "  /audit (lọc theo user, tài khoản, hành động)\n"
+            "  /broadcast <thông điệp>\n\n"
+            "Hoặc dùng /settings để có UI inline cho mọi tác vụ trên."
+        ),
+        "help_v2_pick_language": "🌐 Chọn ngôn ngữ",
         "help_accounts_label": "*Tài khoản của bạn*",
         # ---- Errors ----
         "err_not_allowed": "🚫 Thao tác không được phép.",
