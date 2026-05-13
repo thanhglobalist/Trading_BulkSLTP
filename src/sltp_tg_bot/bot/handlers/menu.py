@@ -29,12 +29,12 @@ async def _get_member_or_lock(conn, user_id: int):
 
 
 # ---------------------------------------------------------------------------
-# /menu  → account picker
+# /accounts  → account picker
 # ---------------------------------------------------------------------------
 
 
-@router.message(Command("menu"))
-async def cmd_menu(message: Message) -> None:
+@router.message(Command("accounts"))
+async def cmd_accounts(message: Message) -> None:
     if message.from_user is None:
         return
     settings = get_settings()
@@ -44,7 +44,7 @@ async def cmd_menu(message: Message) -> None:
             await message.answer(t("lockout", "en"))
             await db.audit(
                 conn, user_id=message.from_user.id, account_id=None,
-                action="menu", allowed=False, reason="not_member",
+                action="accounts", allowed=False, reason="not_member",
             )
             return
         lang = member["language"]
@@ -268,7 +268,7 @@ async def cb_menu_settings(cb: CallbackQuery) -> None:
 
     account_id = sess["current_account_id"] if sess else None
     if not account_id:
-        await cb.message.answer("No active account. Use /menu to pick one.")
+        await cb.message.answer("No active account. Use /accounts to pick one.")
         await cb.answer()
         return
 

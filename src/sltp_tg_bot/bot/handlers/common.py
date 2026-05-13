@@ -1,4 +1,4 @@
-"""/start, /help, /menu, /getmyid, /lang and the language picker.
+"""/start, /help, /accounts, /getmyid, /lang and the language picker.
 
 Implements the stranger-lockout policy: anyone not in ``team_members``
 (and not the bootstrap admin) gets *only* the localised lockout string
@@ -41,15 +41,15 @@ router = Router(name="common")
 
 def _commands_for(lang: str, *, is_admin: bool) -> list[BotCommand]:
     cmds = [
-        BotCommand(command="menu", description=t("btn_status", lang)[2:] + " / menu"),
-        BotCommand(command="status", description=t("btn_status", lang)[2:]),
-        BotCommand(command="positions", description=t("btn_positions", lang)[2:]),
-        BotCommand(command="help", description=t("btn_help", lang)[2:]),
-        BotCommand(command="lang", description=t("btn_lang", lang)[2:]),
-        BotCommand(command="getmyid", description="Telegram ID"),
+        BotCommand(command="accounts", description=t("cmd_desc_menu", lang)),
+        BotCommand(command="status", description=t("cmd_desc_status", lang)),
+        BotCommand(command="positions", description=t("cmd_desc_positions", lang)),
+        BotCommand(command="help", description=t("cmd_desc_help", lang)),
+        BotCommand(command="lang", description=t("cmd_desc_lang", lang)),
+        BotCommand(command="getmyid", description=t("cmd_desc_getmyid", lang)),
     ]
     if is_admin:
-        cmds.append(BotCommand(command="settings", description=t("btn_settings", lang)[2:]))
+        cmds.append(BotCommand(command="settings", description=t("cmd_desc_settings", lang)))
     return cmds
 
 
@@ -114,7 +114,7 @@ async def cmd_start(message: Message) -> None:
         f"{t('welcome_title', lang)}\n\n{mdv2_escape(t('welcome_body', lang))}",
         parse_mode="MarkdownV2",
     )
-    await message.answer("/menu")
+    await message.answer("/accounts")
 
 
 # ---------------------------------------------------------------------------

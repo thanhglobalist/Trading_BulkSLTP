@@ -45,7 +45,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "welcome_title": "👋 Welcome to *SLTP Bot*",
         "welcome_body": (
             "This bot lets you control your MT5 trading account from Telegram.\n"
-            "Use /menu to begin or /help to see what you can do."
+            "Use /accounts to begin or /help to see what you can do."
         ),
         "pick_language": "Please pick your language:",
         "language_set": "✅ Language updated.",
@@ -70,11 +70,19 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "btn_confirm": "✅ Confirm",
         "btn_cancel": "❌ Cancel",
         "btn_back": "◀️ Back",
+        # ---- Command descriptions (Telegram autocomplete) ----
+        "cmd_desc_menu": "🏦 Switch trading account",
+        "cmd_desc_status": "📊 Quick account status",
+        "cmd_desc_positions": "📋 List open positions",
+        "cmd_desc_help": "❓ Show help",
+        "cmd_desc_lang": "🌐 Change language",
+        "cmd_desc_getmyid": "🆔 Show your Telegram ID",
+        "cmd_desc_settings": "⚙️ Admin settings",
         # ---- Header ----
         "header_fmt": "{alias} · Eq {equity} · P/L {pl} · v{ver}",
         "header_no_data": "{alias} · (no heartbeat) · v{ver}",
         # ---- Account picker ----
-        "pick_account": "🏦 Select an account:",
+        "pick_account": "🏦 Pick a trading account to control",
         "no_accounts": "You don't have access to any account yet. Please contact your admin.",
         # ---- Confirm prompts ----
         "confirm_close_all": "Confirm: Close ALL {n} positions on *{alias}*?",
@@ -109,7 +117,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "no_positions": "No open positions.",
         # ---- Help sections ----
         "help_title": "📖 *Help*",
-        "help_navigation": "*Navigation*\n• `/menu` — open the main menu\n• `/status` — quick status\n• `/positions` — list open positions\n• `/lang` — change language",
+        "help_navigation": "*Navigation*\n• `/accounts` — pick a trading account\n• `/status` — quick status\n• `/positions` — list open positions\n• `/lang` — change language",
         "help_reading": "*Reading the Market*\nEvery screen header shows the account alias, equity, floating P/L and bot version.",
         "help_closing": "*Closing Positions*\n❌ Close → Close ALL / BUYs / SELLs. Each action requires a confirmation tap.",
         "help_sltp": "*Bulk SL/TP*\n🛡️ SL/TP applies a single price to every open position. Removing SL/TP clears the level.",
@@ -150,7 +158,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_btn_switch_account": "🔁 Switch account",
         "help_v2_nav": (
             "🧭 Navigation\n\n"
-            "/menu        Open the main panel\n"
+            "/accounts        Open the main panel\n"
             "/status      Quick equity & P/L\n"
             "/positions   List open trades\n"
             "/lang        Change language (EN / JA / VI)\n"
@@ -170,7 +178,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         ),
         "help_v2_closing": (
             "❌ Closing positions (requires role: view+close or above)\n\n"
-            "Tap ❌ Close on /menu, then pick:\n"
+            "Tap ❌ Close on /accounts, then pick:\n"
             "  • Close ALL — every open position\n"
             "  • Close BUYs — only long positions 🔵\n"
             "  • Close SELLs — only short positions 🔴\n\n"
@@ -197,7 +205,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_emergency": (
             "🚨 Emergency / Panic\n\n"
             "If something goes wrong:\n"
-            "  1. /menu → 🚨 Emergency\n"
+            "  1. /accounts → 🚨 Emergency\n"
             "  2. Type PANIC in capital letters to confirm\n"
             "  3. The bot closes ALL positions and DISABLES trading until an\n"
             "     admin re-enables it.\n\n"
@@ -225,7 +233,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_commands_user": (
             "💬 Commands list\n\n"
             "Public (everyone):\n"
-            "  /menu /status /positions /help /lang /getmyid\n\n"
+            "  /accounts /status /positions /help /lang /getmyid\n\n"
             "Trading (role: view+close or full):\n"
             "  /closeall /closebuys /closesells\n\n"
             "Trading (role: full only):\n"
@@ -306,7 +314,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "welcome_title": "👋 *SLTP Bot* へようこそ",
         "welcome_body": (
             "このボットでは Telegram から MT5 口座を操作できます。\n"
-            "/menu で開始、/help で機能一覧を表示します。"
+            "/accounts で開始、/help で機能一覧を表示します。"
         ),
         "pick_language": "言語を選択してください：",
         "language_set": "✅ 言語を変更しました。",
@@ -331,11 +339,19 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "btn_confirm": "✅ 実行",
         "btn_cancel": "❌ 取消",
         "btn_back": "◀️ 戻る",
+        # ---- Command descriptions (Telegram autocomplete) ----
+        "cmd_desc_menu": "🏦 取引口座を切替",
+        "cmd_desc_status": "📊 口座ステータスを確認",
+        "cmd_desc_positions": "📋 ポジション一覧",
+        "cmd_desc_help": "❓ ヘルプを表示",
+        "cmd_desc_lang": "🌐 言語を変更",
+        "cmd_desc_getmyid": "🆔 Telegram ID を表示",
+        "cmd_desc_settings": "⚙️ 管理者設定",
         # ---- Header ----
         "header_fmt": "{alias} · 残高 {equity} · 損益 {pl} · v{ver}",
         "header_no_data": "{alias} · (未接続) · v{ver}",
         # ---- Account picker ----
-        "pick_account": "🏦 口座を選択してください：",
+        "pick_account": "🏦 操作する取引口座を選択",
         "no_accounts": "アクセス可能な口座がありません。管理者にお問い合わせください。",
         # ---- Confirm prompts ----
         "confirm_close_all": "確認：*{alias}* の全 {n} ポジションをクローズしますか？",
@@ -370,7 +386,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "no_positions": "オープンポジションはありません。",
         # ---- Help sections ----
         "help_title": "📖 *ヘルプ*",
-        "help_navigation": "*ナビゲーション*\n• `/menu` — メインメニュー\n• `/status` — 状況確認\n• `/positions` — ポジション一覧\n• `/lang` — 言語変更",
+        "help_navigation": "*ナビゲーション*\n• `/accounts` — メインメニュー\n• `/status` — 状況確認\n• `/positions` — ポジション一覧\n• `/lang` — 言語変更",
         "help_reading": "*画面の見方*\n各画面の上部に口座名・残高・含み損益・バージョンが表示されます。",
         "help_closing": "*ポジションのクローズ*\n❌ クローズ → 全部 / 買い / 売り。各操作には確認タップが必要です。",
         "help_sltp": "*一括 SL/TP*\n🛡️ SL/TP は全オープンポジションに同一価格を適用します。解除で値を消去します。",
@@ -411,7 +427,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_btn_switch_account": "🔁 口座切替",
         "help_v2_nav": (
             "🧭 ナビゲーション\n\n"
-            "/menu        メインパネルを開く\n"
+            "/accounts        メインパネルを開く\n"
             "/status      残高と損益を確認\n"
             "/positions   保有ポジション一覧\n"
             "/lang        言語切替 (EN / JA / VI)\n"
@@ -431,7 +447,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         ),
         "help_v2_closing": (
             "❌ ポジション決済 (必要な権限：view+close 以上)\n\n"
-            "/menu の ❌ 決済 から選択：\n"
+            "/accounts の ❌ 決済 から選択：\n"
             "  • 全決済 — 保有中の全ポジション\n"
             "  • 買い決済 — 買いポジションのみ 🔵\n"
             "  • 売り決済 — 売りポジションのみ 🔴\n\n"
@@ -458,7 +474,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_emergency": (
             "🚨 緊急停止 / Panic\n\n"
             "緊急時の手順：\n"
-            "  1. /menu → 🚨 Emergency\n"
+            "  1. /accounts → 🚨 Emergency\n"
             "  2. 確認のため大文字で PANIC と入力\n"
             "  3. ボットが全ポジションを決済し、管理者が再開するまで\n"
             "     取引を停止します。\n\n"
@@ -486,7 +502,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_commands_user": (
             "💬 コマンド一覧\n\n"
             "共通（全員）：\n"
-            "  /menu /status /positions /help /lang /getmyid\n\n"
+            "  /accounts /status /positions /help /lang /getmyid\n\n"
             "取引コマンド (view+close または full):\n"
             "  /closeall /closebuys /closesells\n\n"
             "取引コマンド (full のみ):\n"
@@ -567,7 +583,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "welcome_title": "👋 Chào mừng đến với *SLTP Bot*",
         "welcome_body": (
             "Bot này giúp Quý khách điều khiển tài khoản MT5 ngay trên Telegram.\n"
-            "Dùng /menu để bắt đầu hoặc /help để xem hướng dẫn."
+            "Dùng /accounts để bắt đầu hoặc /help để xem hướng dẫn."
         ),
         "pick_language": "Vui lòng chọn ngôn ngữ:",
         "language_set": "✅ Đã cập nhật ngôn ngữ.",
@@ -592,11 +608,19 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "btn_confirm": "✅ Xác nhận",
         "btn_cancel": "❌ Hủy",
         "btn_back": "◀️ Quay lại",
+        # ---- Command descriptions (Telegram autocomplete) ----
+        "cmd_desc_menu": "🏦 Đổi tài khoản giao dịch",
+        "cmd_desc_status": "📊 Trạng thái tài khoản",
+        "cmd_desc_positions": "📋 Danh sách vị thế",
+        "cmd_desc_help": "❓ Xem trợ giúp",
+        "cmd_desc_lang": "🌐 Đổi ngôn ngữ",
+        "cmd_desc_getmyid": "🆔 Xem Telegram ID",
+        "cmd_desc_settings": "⚙️ Cài đặt quản trị",
         # ---- Header ----
         "header_fmt": "{alias} · Vốn {equity} · L/L {pl} · v{ver}",
         "header_no_data": "{alias} · (chưa kết nối) · v{ver}",
         # ---- Account picker ----
-        "pick_account": "🏦 Chọn tài khoản:",
+        "pick_account": "🏦 Chọn tài khoản giao dịch để điều khiển",
         "no_accounts": "Bạn chưa có quyền truy cập tài khoản nào. Vui lòng liên hệ quản trị viên.",
         # ---- Confirm prompts ----
         "confirm_close_all": "Xác nhận: Đóng TẤT CẢ {n} vị thế trên *{alias}*?",
@@ -631,7 +655,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "no_positions": "Không có vị thế đang mở.",
         # ---- Help sections ----
         "help_title": "📖 *Trợ giúp*",
-        "help_navigation": "*Điều hướng*\n• `/menu` — mở menu chính\n• `/status` — xem trạng thái nhanh\n• `/positions` — danh sách vị thế\n• `/lang` — đổi ngôn ngữ",
+        "help_navigation": "*Điều hướng*\n• `/accounts` — mở menu chính\n• `/status` — xem trạng thái nhanh\n• `/positions` — danh sách vị thế\n• `/lang` — đổi ngôn ngữ",
         "help_reading": "*Đọc thị trường*\nDòng tiêu đề mỗi màn hình hiển thị tên tài khoản, vốn, lãi/lỗ trôi nổi và phiên bản bot.",
         "help_closing": "*Đóng vị thế*\n❌ Đóng → TẤT CẢ / MUA / BÁN. Mỗi thao tác cần xác nhận thêm một lần.",
         "help_sltp": "*SL/TP hàng loạt*\n🛡️ SL/TP áp dụng một mức giá cho mọi vị thế đang mở. Bỏ SL/TP sẽ xóa mức hiện có.",
@@ -672,7 +696,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_btn_switch_account": "🔁 Đổi tài khoản",
         "help_v2_nav": (
             "🧭 Điều hướng\n\n"
-            "/menu        Mở bảng điều khiển chính\n"
+            "/accounts        Mở bảng điều khiển chính\n"
             "/status      Xem nhanh equity & P/L\n"
             "/positions   Danh sách lệnh đang mở\n"
             "/lang        Đổi ngôn ngữ (EN / JA / VI)\n"
@@ -692,7 +716,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         ),
         "help_v2_closing": (
             "❌ Đóng lệnh (yêu cầu vai trò: view+close trở lên)\n\n"
-            "Trong /menu chạm ❌ Đóng, sau đó chọn:\n"
+            "Trong /accounts chạm ❌ Đóng, sau đó chọn:\n"
             "  • Đóng TẤT CẢ — toàn bộ lệnh đang mở\n"
             "  • Đóng BUY — chỉ lệnh mua 🔵\n"
             "  • Đóng SELL — chỉ lệnh bán 🔴\n\n"
@@ -719,7 +743,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_emergency": (
             "🚨 Khẩn cấp / Panic\n\n"
             "Khi có sự cố:\n"
-            "  1. /menu → 🚨 Emergency\n"
+            "  1. /accounts → 🚨 Emergency\n"
             "  2. Nhập PANIC in hoa để xác nhận\n"
             "  3. Bot đóng TẤT CẢ lệnh và TẠM KHÓA giao dịch cho đến khi\n"
             "     quản trị viên mở lại.\n\n"
@@ -747,7 +771,7 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
         "help_v2_commands_user": (
             "💬 Danh sách lệnh\n\n"
             "Công khai (mọi người):\n"
-            "  /menu /status /positions /help /lang /getmyid\n\n"
+            "  /accounts /status /positions /help /lang /getmyid\n\n"
             "Lệnh giao dịch (vai trò: view+close hoặc full):\n"
             "  /closeall /closebuys /closesells\n\n"
             "Lệnh giao dịch (chỉ full):\n"

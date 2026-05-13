@@ -42,9 +42,9 @@ These work regardless of role, as long as the user is in `team_members`:
 
 | Command | Description | Notes |
 |---|---|---|
-| `/start` | Initialize / open the bot | First-time users get language auto-detect + welcome. Returning users get a "Tap /menu to begin." prompt. |
+| `/start` | Initialize / open the bot | First-time users get language auto-detect + welcome. Returning users get a "Tap /accounts to begin." prompt. |
 | `/help` | Dynamic per-role guide | Content varies by role — see role-specific tables below |
-| `/menu` | Open main menu (account picker) | Always opens with picker if user has ≥ 2 accessible accounts; opens directly into the account if only 1 |
+| `/accounts` | Open main menu (account picker) | Always opens with picker if user has ≥ 2 accessible accounts; opens directly into the account if only 1 |
 | `/use <alias>` | Switch session to a specific account | Power-user shortcut. Fails silently if alias doesn't exist or user has no permission on it |
 | `/getmyid` | Echo your Telegram numeric ID | **Works without any auth** — useful for new users to send their ID to the admin |
 | `/lang` | Switch interface language | Shows inline keyboard: 🇬🇧 English · 🇯🇵 日本語 · 🇻🇳 Tiếng Việt. Persists in `team_members.language` |
@@ -77,7 +77,7 @@ User exists in the system but admin hasn't granted them any account yet.
 | `/start` | Welcome message + "You don't have access to any account. Contact your admin with your ID: {user_id}" |
 | `/help` | "You don't have access to any account yet. Your Telegram ID: {user_id}. Contact your admin." |
 | `/getmyid` | Returns their numeric ID |
-| `/menu` | "⛔ You don't have access to any account. Contact your admin." |
+| `/accounts` | "⛔ You don't have access to any account. Contact your admin." |
 | `/lang` | Works — they can still pick their preferred language |
 | `/cancel` | Works |
 | Trading commands (`/closeall`, `/sl`, etc.) | `⛔ Action not allowed` + audit log entry |
@@ -197,7 +197,7 @@ In addition to all Full role commands:
 | `/start` | lockout | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/help` | lockout | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/getmyid` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/menu` | lockout | ⛔ no acct | ✅ | ✅ | ✅ | ✅ |
+| `/accounts` | lockout | ⛔ no acct | ✅ | ✅ | ✅ | ✅ |
 | `/use` | lockout | ⛔ no acct | ✅ | ✅ | ✅ | ✅ |
 | `/lang` | lockout | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/cancel` | lockout | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -299,7 +299,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇬🇧 English**
 ```
-/menu        —  Open main menu
+/accounts        —  Open main menu
 /status      —  Account snapshot (balance, equity, P/L)
 /positions   —  List open positions
 /help        —  Show available commands
@@ -309,7 +309,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇯🇵 日本語**
 ```
-/menu        —  メインメニューを開く
+/accounts        —  メインメニューを開く
 /status      —  口座状況（残高・有効証拠金・損益）
 /positions   —  保有ポジション一覧
 /help        —  使えるコマンドを表示
@@ -319,7 +319,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇻🇳 Tiếng Việt**
 ```
-/menu        —  Mở menu chính
+/accounts        —  Mở menu chính
 /status      —  Trạng thái tài khoản (số dư, equity, P/L)
 /positions   —  Danh sách vị thế đang mở
 /help        —  Xem các lệnh có sẵn
@@ -333,7 +333,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇬🇧 English**
 ```
-/menu          —  Open main menu
+/accounts          —  Open main menu
 /status        —  Account snapshot
 /positions     —  List open positions
 /closeall      —  Close ALL positions on this account
@@ -345,7 +345,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇯🇵 日本語**
 ```
-/menu          —  メインメニューを開く
+/accounts          —  メインメニューを開く
 /status        —  口座状況
 /positions     —  保有ポジション一覧
 /closeall      —  全ポジションを決済
@@ -357,7 +357,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇻🇳 Tiếng Việt**
 ```
-/menu          —  Mở menu chính
+/accounts          —  Mở menu chính
 /status        —  Trạng thái tài khoản
 /positions     —  Danh sách vị thế đang mở
 /closeall      —  Đóng TẤT CẢ vị thế
@@ -373,7 +373,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇬🇧 English**
 ```
-/menu          —  Open main menu
+/accounts          —  Open main menu
 /status        —  Account snapshot
 /positions     —  List open positions
 /closeall      —  Close ALL positions
@@ -391,7 +391,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇯🇵 日本語**
 ```
-/menu          —  メインメニューを開く
+/accounts          —  メインメニューを開く
 /status        —  口座状況
 /positions     —  保有ポジション一覧
 /closeall      —  全ポジションを決済
@@ -409,7 +409,7 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 **🇻🇳 Tiếng Việt**
 ```
-/menu          —  Mở menu chính
+/accounts          —  Mở menu chính
 /status        —  Trạng thái tài khoản
 /positions     —  Danh sách vị thế đang mở
 /closeall      —  Đóng TẤT CẢ vị thế
@@ -429,12 +429,12 @@ Strangers see the bot's default command list (the only command the bot exposes p
 
 ### Admin role — UI in Telegram
 
-Admins see all Full commands **plus** an admin section. To keep the popup readable, infrequent admin commands (rotate token, rename account, demote, export, stats) are accessible via `/menu → ⚙️ Settings` and intentionally omitted from the autocomplete popup.
+Admins see all Full commands **plus** an admin section. To keep the popup readable, infrequent admin commands (rotate token, rename account, demote, export, stats) are accessible via `/accounts → ⚙️ Settings` and intentionally omitted from the autocomplete popup.
 
 **🇬🇧 English**
 ```
 — Trading —
-/menu          —  Open main menu
+/accounts          —  Open main menu
 /status        —  Account snapshot
 /positions     —  List open positions
 /closeall      —  Close ALL positions
@@ -461,7 +461,7 @@ Admins see all Full commands **plus** an admin section. To keep the popup readab
 **🇯🇵 日本語**
 ```
 — 取引 —
-/menu          —  メインメニューを開く
+/accounts          —  メインメニューを開く
 /status        —  口座状況
 /positions     —  保有ポジション一覧
 /closeall      —  全ポジションを決済
@@ -488,7 +488,7 @@ Admins see all Full commands **plus** an admin section. To keep the popup readab
 **🇻🇳 Tiếng Việt**
 ```
 — Giao dịch —
-/menu          —  Mở menu chính
+/accounts          —  Mở menu chính
 /status        —  Trạng thái tài khoản
 /positions     —  Danh sách vị thế đang mở
 /closeall      —  Đóng TẤT CẢ vị thế
@@ -522,7 +522,7 @@ The bot refreshes a user's popup commands at three moments:
 2. **On role change** — when an admin runs `/setrole`, `/promote`, `/demote`, `/pausemember`, or `/resumemember` on this user
 3. **On `/lang` change** — to swap the descriptions to the new language
 
-Implementation sketch (`bot/services/menu_commands.py`):
+Implementation sketch (`bot/services/accounts_commands.py`):
 
 ```python
 from aiogram.types import BotCommand, BotCommandScopeChat
@@ -536,7 +536,7 @@ async def refresh_user_menu(bot, user_id: int, role: str, lang: str):
     )
 ```
 
-The `COMMAND_SETS` dictionary lives in `bot/i18n/menu_commands.py` and contains the exact 3 × 6 = 18 lists shown above (one per role × language).
+The `COMMAND_SETS` dictionary lives in `bot/i18n/accounts_commands.py` and contains the exact 3 × 6 = 18 lists shown above (one per role × language).
 
 ---
 
