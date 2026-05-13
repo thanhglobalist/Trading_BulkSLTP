@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sltp-tg-bot"
-version = "1.0.4"
+version = "1.0.6"
 description = "Telegram control bridge for the MT5 BulkSLTPUpdater EA."
 readme = "README.md"
 requires-python = ">=3.11"

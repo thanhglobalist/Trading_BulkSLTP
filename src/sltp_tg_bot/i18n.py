@@ -183,7 +183,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
             "  • Close BUYs — only long positions 🔵\n"
             "  • Close SELLs — only short positions 🔴\n\n"
             "Every action requires a confirmation tap.\n"
-            "Hedged pairs use CLOSE_BY to save commission."
+            "Each position closes at the live market price — "
+            "BUYs at Bid, SELLs at Ask. No CLOSE_BY netting."
         ),
         "help_v2_sltp": (
             "🛡️ Bulk SL/TP (requires role: full)\n\n"
@@ -452,7 +453,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
             "  • 買い決済 — 買いポジションのみ 🔵\n"
             "  • 売り決済 — 売りポジションのみ 🔴\n\n"
             "操作には確認タップが必要です。\n"
-            "ヘッジ建てでは手数料節約のため CLOSE_BY を使用します。"
+            "各ポジションは現在のマーケット価格で決済されます — "
+            "買いは Bid、売りは Ask。CLOSE_BY ネッティングは行いません。"
         ),
         "help_v2_sltp": (
             "🛡️ 一括 SL/TP (必要な権限：full)\n\n"
@@ -721,7 +723,8 @@ TRANSLATIONS: dict[str, dict[str, str]] = {
             "  • Đóng BUY — chỉ lệnh mua 🔵\n"
             "  • Đóng SELL — chỉ lệnh bán 🔴\n\n"
             "Mọi thao tác đều cần xác nhận thêm 1 lần.\n"
-            "Lệnh đối ứng (hedged) dùng CLOSE_BY để tiết kiệm phí."
+            "Mỗi lệnh được đóng tại giá thị trường — "
+            "BUY tại Bid, SELL tại Ask. Không dùng CLOSE_BY netting."
         ),
         "help_v2_sltp": (
             "🛡️ SL/TP hàng loạt (yêu cầu vai trò: full)\n\n"
